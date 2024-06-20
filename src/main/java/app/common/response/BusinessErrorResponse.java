@@ -4,8 +4,6 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import app.common.exceptions.Violation;
 
-
-
 @Data
 @AllArgsConstructor
 public class BusinessErrorResponse {
