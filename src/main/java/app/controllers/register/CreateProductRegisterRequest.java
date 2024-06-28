@@ -1,4 +1,4 @@
-package app.productregister.controller;
+package app.controllers.register;
 
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;

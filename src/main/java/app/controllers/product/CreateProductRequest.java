@@ -1,4 +1,4 @@
-package app.product.controller;
+package app.controllers.product;
 
 import jakarta.validation.constraints.NotNull;
 import lombok.*;

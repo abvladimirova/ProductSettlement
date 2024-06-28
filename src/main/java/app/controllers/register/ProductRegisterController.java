@@ -1,4 +1,4 @@
-package app.productregister.controller;
+package app.controllers.register;
 
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,7 +37,7 @@ public class ProductRegisterController {
     }
 
     @PostMapping (value = "/corporate-settlement-account/create", consumes = "application/json", produces = "application/json")
-    @Transactional
+    //@Transactional
     public ResponseEntity<TppProductRegister> createProductRegister(@Valid @RequestBody final CreateProductRegisterRequest request)
             throws RegisterTypeNotFoundException, AccountNotFoundException, AccountPoolNotFound, ProductNotFoundException
     {

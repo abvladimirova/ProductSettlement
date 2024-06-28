@@ -1,9 +1,8 @@
-package app.productregister.controller;
+package app.controllers.register;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.ToString;
-import app.productregister.controller.CreateProductRegisterResponseData;
 
 @AllArgsConstructor
 @ToString

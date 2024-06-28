@@ -1,4 +1,4 @@
-package app.product.controller;
+package app.controllers.product;
 
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,7 +11,6 @@ import app.product.entity.Agreement;
 import app.product.exceptions.ProductNotFoundException;
 import app.product.repository.AgreementRepo;
 import app.product.entity.TppProduct;
-import app.product.controller.CreateProductRequest;
 import app.product.service.TppProductService;
 import java.math.BigInteger;
 import java.util.Objects;
