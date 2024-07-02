@@ -1,10 +1,10 @@
-CREATE TABLE tpp_ref_account_type
+CREATE TABLE IF NOT EXISTS tpp_ref_account_type
 (
     internal_id serial PRIMARY KEY ,
     value VARCHAR(100) UNIQUE NOT NULL
 );
 
-CREATE TABLE tpp_ref_product_class
+CREATE TABLE IF NOT EXISTS tpp_ref_product_class
 (
     internal_id serial PRIMARY KEY ,
     value VARCHAR(100) UNIQUE NOT NULL,
@@ -17,7 +17,7 @@ CREATE TABLE tpp_ref_product_class
 );
 
 
-CREATE TABLE tpp_ref_product_register_type
+CREATE TABLE IF NOT EXISTS tpp_ref_product_register_type
 (
     internal_id serial PRIMARY KEY ,
     value VARCHAR(100) UNIQUE NOT NULL,
@@ -33,7 +33,7 @@ ALTER TABLE tpp_ref_product_register_type
 ALTER TABLE tpp_ref_product_register_type
     ADD FOREIGN KEY (account_type) REFERENCES tpp_ref_account_type (value);
 
-CREATE TABLE tpp_product_register
+CREATE TABLE IF NOT EXISTS tpp_product_register
 (
     id serial PRIMARY KEY ,
     product_id BIGINT,
@@ -47,7 +47,7 @@ CREATE TABLE tpp_product_register
 ALTER TABLE tpp_product_register
     ADD FOREIGN KEY (type) REFERENCES tpp_ref_product_register_type (value);
 
-CREATE TABLE account_pool(
+CREATE TABLE IF NOT EXISTS account_pool(
                              id serial PRIMARY KEY,
                              branch_code VARCHAR(50),
                              currency_code VARCHAR(30),
@@ -56,7 +56,7 @@ CREATE TABLE account_pool(
                              registry_type_code VARCHAR(50)
 );
 
-CREATE TABLE account(
+CREATE TABLE IF NOT EXISTS account(
                         id serial PRIMARY KEY,
                         account_pool_id BIGINT,
                         account_number VARCHAR(25),
@@ -67,7 +67,7 @@ ALTER TABLE account
     ADD FOREIGN KEY (account_pool_id) REFERENCES account_pool (id);
 --ON DELETE CASCADE;
 
-CREATE TABLE tpp_template_register_balance
+CREATE TABLE IF NOT EXISTS tpp_template_register_balance
 (
     id serial PRIMARY KEY ,
     register_id BIGINT,
@@ -76,7 +76,7 @@ CREATE TABLE tpp_template_register_balance
     last_modify_date TIMESTAMP
 );
 
-CREATE TABLE tpp_product
+CREATE TABLE IF NOT EXISTS tpp_product
 (
     id serial PRIMARY KEY,
 --	agreement_id BIGINT,
@@ -99,7 +99,7 @@ CREATE TABLE tpp_product
     state VARCHAR(50)
 );
 
-CREATE TABLE agreement
+CREATE TABLE IF NOT EXISTS agreement
 (
     id serial PRIMARY KEY,
     product_id BIGINT,

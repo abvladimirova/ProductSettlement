@@ -13,15 +13,5 @@ public class Main {
 
         SpringApplication.run(Main.class,args);
 
-        long startTime = System.currentTimeMillis();
-        try {
-            do {
-                System.out.println("I'm here");
-                Thread.sleep(10 * 1000);
-            } while (System.currentTimeMillis() < startTime + 10 * 60 * 1000);
-        } catch (InterruptedException e) {
-            System.out.println("I'm stopped");
-        }
-        System.out.println("Time's up");
     }
 }
