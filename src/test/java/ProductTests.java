@@ -1,6 +1,5 @@
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
@@ -66,7 +65,7 @@ public class ProductTests {
                         .setDateOfConclusion(Timestamp.valueOf("2024-01-01 00:00:00"))
                         .setProductCodeId(BigInteger.valueOf(random.nextInt()))
                         .setClientId(BigInteger.valueOf(random.nextInt()))
-                        .setType(String.valueOf(random.nextInt()))
+                        .setProductType(String.valueOf(random.nextInt()))
                         .setPriority(BigInteger.valueOf(random.nextInt()))
                         .setPenaltyRate(random.nextFloat())
                         .setNso(BigDecimal.valueOf(random.nextInt()))

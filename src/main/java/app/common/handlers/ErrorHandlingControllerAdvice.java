@@ -10,14 +10,27 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import app.common.response.ValidationErrorResponse;
 import app.common.exceptions.Violation;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
 @ControllerAdvice
 public class ErrorHandlingControllerAdvice {
     @ResponseBody
-    @ExceptionHandler(ConstraintViolationException.class)
     @ResponseStatus(HttpStatus.BAD_REQUEST)
+    @ExceptionHandler(MethodArgumentNotValidException.class)
+    public ValidationErrorResponse onMethodArgumentNotValidException(
+            MethodArgumentNotValidException e
+    ) {
+        final List<Violation> violations = e.getBindingResult().getFieldErrors().stream()
+                .map(error -> new Violation(error.getField(), error.getDefaultMessage()))
+                .collect(Collectors.toList());
+        return new ValidationErrorResponse(violations);
+    }
+
+    @ResponseBody
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    @ExceptionHandler(ConstraintViolationException.class)
     public ValidationErrorResponse onConstraintValidationException(
             ConstraintViolationException e
     ) {
@@ -28,18 +41,6 @@ public class ErrorHandlingControllerAdvice {
                                 violation.getMessage()
                         )
                 )
-                .collect(Collectors.toList());
-        return new ValidationErrorResponse(violations);
-    }
-
-    @ExceptionHandler(MethodArgumentNotValidException.class)
-    @ResponseStatus(HttpStatus.BAD_REQUEST)
-    @ResponseBody
-    public ValidationErrorResponse onMethodArgumentNotValidException(
-            MethodArgumentNotValidException e
-    ) {
-        final List<Violation> violations = e.getBindingResult().getFieldErrors().stream()
-                .map(error -> new Violation(error.getField(), error.getDefaultMessage()))
                 .collect(Collectors.toList());
         return new ValidationErrorResponse(violations);
     }

@@ -7,6 +7,6 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 
 public class Violation {
-    private final String fieldName;
+    private final String code;
     private final String message;
 }
