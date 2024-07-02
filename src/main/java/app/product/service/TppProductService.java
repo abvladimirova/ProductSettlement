@@ -11,8 +11,10 @@ import java.util.List;
 
 public interface TppProductService {
     public TppProduct getProduct(Integer id) throws ProductNotFoundException;
-    TppProduct newProduct(Integer id,
-                          BigInteger productCodeId,
+
+    public TppProduct getProductByContractNumber (String ContractNumber);
+
+    TppProduct newProduct(BigInteger productCodeId,
                           BigInteger clientId,
                           String type,
                           String number,
@@ -21,6 +23,6 @@ public interface TppProductService {
                           float penaltyRate,
                           BigDecimal nso,
                           BigDecimal thresholdAmount,
-                          String interestRateType,
-                          List<AdditionalProperty> additionalProperties);
+                          String interestRateType);
+    //TppProduct addProperty(AdditionalProperty additionalProperty);
 }

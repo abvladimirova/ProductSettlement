@@ -2,13 +2,15 @@ package app.product.entity;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.Getter;
 import lombok.NonNull;
-import lombok.Setter;
 import lombok.RequiredArgsConstructor;
 import lombok.experimental.Accessors;
 import java.math.BigDecimal;
@@ -23,7 +25,7 @@ import java.sql.Timestamp;
 @Accessors(chain = true)
 public class TppProduct {
     @Id
-    @NonNull
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
     @NonNull
@@ -36,7 +38,7 @@ public class TppProduct {
 
     @NonNull
     @Column(name = "type")
-    private String type;
+    private String productType;
 
     @NonNull
     @Column(name = "number")

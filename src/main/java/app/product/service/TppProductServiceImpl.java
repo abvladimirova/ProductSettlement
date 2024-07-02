@@ -26,9 +26,13 @@ public class TppProductServiceImpl implements TppProductService {
     }
 
     @Override
+    public TppProduct getProductByContractNumber(String сontractNumber) {
+        return productRepo.findFirstByNumber(сontractNumber);
+    }
+
+    @Override
     @Transactional
-    public TppProduct newProduct(Integer id,
-                                 BigInteger productCodeId,
+    public TppProduct newProduct(BigInteger productCodeId,
                                  BigInteger clientId,
                                  String type,
                                  String number,
@@ -37,18 +41,17 @@ public class TppProductServiceImpl implements TppProductService {
                                  float penaltyRate,
                                  BigDecimal nso,
                                  BigDecimal thresholdAmount,
-                                 String interestRateType,
-                                 List<AdditionalProperty> additionalProperties
+                                 String interestRateType
     ) {
 
         var product = new TppProduct(
-                id,
                 productCodeId,
                 clientId,
                 type,
                 number,
                 priority/*,
             dateOfConclusion*/);
+        System.out.println("product="+product);
 
         product.setPenaltyRate(penaltyRate)
                 .setNso(nso)
@@ -58,4 +61,8 @@ public class TppProductServiceImpl implements TppProductService {
         return productRepo.save(product);
          //product;
     }
+    /*@Override
+    TppProduct addProperty(AdditionalProperty additionalProperty){
+        return this;
+    }*/
 }

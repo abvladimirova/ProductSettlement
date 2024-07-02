@@ -11,6 +11,9 @@ target/
 *.iws
 *.iml
 *.ipr
+.gitignore
+docker-compose.yml
+
 
 ### Eclipse ###
 .apt_generated
@@ -39,3 +42,4 @@ build/
 /.idea/encodings.xml
 /.idea/uiDesigner.xml
 /.idea/
+/Dockerfile.multistage

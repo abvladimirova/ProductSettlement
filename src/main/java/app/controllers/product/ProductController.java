@@ -1,5 +1,6 @@
 package app.controllers.product;
 
+import app.productregister.exceptions.DuplicateRecordException;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -27,13 +28,17 @@ public class ProductController {
     }
 
     @PostMapping(value = "/corporate-settlement-instance/create", consumes = "application/json", produces = "application/json")
-    public ResponseEntity<TppProduct> createProduct(@Valid @RequestBody final CreateProductRequest request) throws ProductNotFoundException
+    public ResponseEntity<TppProduct> createProduct(@RequestBody final @Valid CreateProductRequest request) throws ProductNotFoundException
     {
         final TppProduct product;
         if (Objects.isNull(request.getInstanceId())) {
 
+            TppProduct tmpProduct = productService.getProductByContractNumber(request.getContractNumber());
+            if (!Objects.isNull(tmpProduct)) {
+                throw new DuplicateRecordException("Параметр ContractNumber №" + request.getContractNumber() + " уже существует для ЭП с ИД " + tmpProduct.getId());
+            }
+
             product = productService.newProduct(
-                    0,
                     BigInteger.valueOf(Long.parseLong(request.getProductCode())),
                     BigInteger.valueOf(Long.parseLong(request.getMdmCode())),
                     request.getProductType(),
@@ -43,18 +48,20 @@ public class ProductController {
                     request.getInterestRatePenalty(),
                     request.getMinimalBalance(),
                     request.getThresholdAmount(),
-                    request.getRateType(),
-                    request.getAdditionalProperties().getData()
-        );
+                    request.getRateType()/*,
+                request.getAdditionalProperties().getData()*/
+
+            );
+
         }
         else {
             product = productService.getProduct(request.getInstanceId());
         }
-        var agreements = request.getInstanceArrangement();
+        /*var agreements = request.getInstanceArrangement();
         for (Agreement agreement : agreements) {
             agreement.setProduct(product);
         }
-        agreementRepo.saveAll(agreements);
+        agreementRepo.saveAll(agreements);*/
 
         return ResponseEntity.status(HttpStatus.ACCEPTED)
                 //.contentType(MediaType.APPLICATION_JSON)
