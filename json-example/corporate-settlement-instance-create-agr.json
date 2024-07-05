@@ -1,0 +1,35 @@
+{
+  "instanceId": 1,
+  "productType": "ЕЖО",
+  "productCode": "02.001.005",
+  "registerType": "type",
+  "mdmCode": "56325",
+  "contractNumber": "R17",
+  "contractDate": "2021-01-01",
+  "priority": "00",
+  "instanceArrangement": [
+    {
+      "number": "R-17-1",
+      "openingDate": "2022-01-01",
+      "generalAgreementId": "111",
+      "supplementaryAgreementId": "222",
+      "arrangementType": "new",
+      "shedulerJobId" : 1,
+      "closingDate": "2025-01-01",
+      "cancelDate": "2026-01-01",
+      "validityDuration": 1,
+      "cancellationReason": "some reason",
+      "status": "открыт",
+      "interestCalculationDate": "2021-01-01",
+      "interestRate": 5.4,
+      "coefficient": 1.5,
+      "coefficientAction": "+",
+      "minimumInterestRate": 2.5,
+      "minimumInterestRateCoefficient": 0.5,
+      "minimumInterestRateCoefficientAction": "+",
+      "maximalInterestRate": 9,
+      "maximalInterestRateCoefficient": 3.5,
+      "maximalInterestRateCoefficientAction": "+"
+    }
+  ]
+}

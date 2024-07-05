@@ -1,0 +1,25 @@
+{
+  "productType": "ЕЖО",
+  "productCode": "02.001.005",
+  "registerType": "type",
+  "mdmCode": "56325",
+  "contractNumber": "R17",
+  "contractDate": "2021-01-01",
+  "priority": "00",
+  "interestRatePenalty": 1.2,
+  "minimalBalance": 30000,
+  "thresholdAmount": 100000,
+  "accountingDetails": "Счет 123 ИНН 333 КПП 888",
+  "rateType": "0",
+  "taxPercentageRate": 7,
+  "additionalProperties": [
+    {
+      "key": "RailwayRegionOwn",
+      "value": "ABC"
+    },
+    {
+      "key": "counter",
+      "value": "123"
+    }
+  ]
+}
