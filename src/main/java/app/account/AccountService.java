@@ -21,5 +21,5 @@ public interface AccountService {
             @NotBlank String priority,
             @NotBlank String registryType,
             boolean throwError);
-            ;
+
 }

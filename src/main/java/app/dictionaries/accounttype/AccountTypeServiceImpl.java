@@ -11,8 +11,12 @@ import java.util.stream.StreamSupport;
 
 @Service
 public class AccountTypeServiceImpl implements AccountTypeService {
+    private final AccountTypeRepo repo;
     @Autowired
-    private AccountTypeRepo repo;
+    public AccountTypeServiceImpl(AccountTypeRepo repo) {
+        this.repo = repo;
+    }
+
     public static HashMap<String, AccountType> accountTypes;
 
     public AccountType getAccountType (String accountTypeCode) {
@@ -25,7 +29,7 @@ public class AccountTypeServiceImpl implements AccountTypeService {
 
     public void init() {
         var all = repo.findAll();
-        accountTypes = StreamSupport.stream(all.spliterator(), false).collect(Collectors.toMap(a -> a.getValue(), a -> a, (prev, next) -> next, HashMap::new));
+        accountTypes = StreamSupport.stream(all.spliterator(), false).collect(Collectors.toMap(AccountType::getValue, a -> a, (prev, next) -> next, HashMap::new));
     }
 
 }

@@ -10,9 +10,9 @@ import java.util.Date;
 
 
 public interface TppProductService {
-    public TppProduct getProduct(BigInteger id) throws NoDataFoundException;
+    TppProduct getProduct(BigInteger id) throws NoDataFoundException;
 
-    public TppProduct getProductByContractNumber (String ContractNumber);
+    TppProduct getProductByContractNumber(String ContractNumber);
 
     TppProduct newProduct(ProductClass productClass,
                           BigInteger clientId,
@@ -26,5 +26,4 @@ public interface TppProductService {
                           String requisiteType,
                           String interestRateType,
                           float taxRate);
-    TppProduct addProperty(TppProduct product, AdditionalProperty additionalProperty);
 }

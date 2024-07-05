@@ -3,7 +3,6 @@ package app.product;
 import app.common.exceptions.NoDataFoundException;
 import app.dictionaries.CommonStates;
 import app.dictionaries.productclass.ProductClass;
-import app.dictionaries.AdditionalProperty;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -14,7 +13,7 @@ import java.util.Date;
 
 @Service
 public class TppProductServiceImpl implements TppProductService {
-    TppProductRepo productRepo;
+    final private TppProductRepo productRepo;
 
     public TppProductServiceImpl(@Autowired TppProductRepo productRepo) {
         this.productRepo = productRepo;
@@ -25,8 +24,8 @@ public class TppProductServiceImpl implements TppProductService {
     }
 
     @Override
-    public TppProduct getProductByContractNumber(String сontractNumber) {
-        return productRepo.findFirstByNumber(сontractNumber);
+    public TppProduct getProductByContractNumber(String contractNumber) {
+        return productRepo.findFirstByNumber(contractNumber);
     }
 
     @Override
@@ -64,9 +63,5 @@ public class TppProductServiceImpl implements TppProductService {
         return productRepo.save(product);
          //product;
     }
-    @Override
-    public TppProduct addProperty(TppProduct product, AdditionalProperty additionalProperty){
 
-        return product;
-    }
 }

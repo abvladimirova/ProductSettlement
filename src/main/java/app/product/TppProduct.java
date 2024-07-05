@@ -1,6 +1,5 @@
 package app.product;
 
-import app.dictionaries.AdditionalProperty;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -80,12 +79,9 @@ public class TppProduct {
     private float taxRate;
 
     @Column(name = "reasone_close")
-    private String reasoneClose;
+    private String reasonClose;
 
     @Column(name = "state")
     private String state;
 
-    public void addProperty(AdditionalProperty property) {
-
-    }
 }

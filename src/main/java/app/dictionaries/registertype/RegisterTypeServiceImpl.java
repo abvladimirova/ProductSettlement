@@ -2,10 +2,7 @@ package app.dictionaries.registertype;
 
 import app.common.exceptions.NoDataFoundException;
 import app.dictionaries.accounttype.AccountType;
-import app.dictionaries.accounttype.AccountTypeService;
-import app.dictionaries.accounttype.AccountTypeServiceImpl;
 import app.dictionaries.productclass.ProductClass;
-import app.dictionaries.productclass.ProductClassRepo;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 

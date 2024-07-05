@@ -1,6 +1,5 @@
 import app.common.exceptions.NoDataFoundException;
 import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.BeforeAll;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
@@ -15,7 +14,6 @@ import app.product.TppProductServiceImpl;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.sql.Date;
-import java.sql.Timestamp;
 import java.util.Optional;
 import java.util.Random;
 
@@ -32,11 +30,6 @@ public class ProductTests {
 
     @InjectMocks
     public static TppProductServiceImpl ProductService;
-
-    @BeforeAll
-    public static void initData () {
-
-    }
 
     //@Test
     void testGetByIdProductNotFound() {

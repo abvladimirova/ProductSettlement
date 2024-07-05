@@ -6,8 +6,6 @@ import org.testcontainers.containers.PostgreSQLContainer;
 import org.testcontainers.utility.DockerImageName;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 
 //@SpringBootTest(classes = Main.class)
 //@Testcontainers
@@ -29,9 +27,6 @@ public class IntegrationTests {
         //registry.add("spring.liquibase.url", postgresContainer::getJdbcUrl);
         //registry.add("spring.liquibase.user", postgresContainer::getUsername);
         //registry.add("spring.liquibase.password", postgresContainer::getPassword);
-
-        //registry.add("integrations.bgt.url", mockServerContainer::getEndpoint);
-
         //registry.add("spring.liquibase.enabled=", () -> true);
         //registry.add("spring.liquibase.change-log=", () -> "classpath:/db/changelog/db.changelog-master.yaml");
     }

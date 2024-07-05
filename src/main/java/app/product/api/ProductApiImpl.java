@@ -115,7 +115,7 @@ public class ProductApiImpl implements ProductApi {
         }
 
         List<Agreement> agreements = request.getInstanceArrangement();
-        if (!Objects.isNull(agreements) && agreements.size() > 0) {
+        if (!Objects.isNull(agreements) && !agreements.isEmpty()) {
             for (Agreement agreement : agreements) {
                 Agreement tmpAgreement = agreementRepo.findByNumber(agreement.getNumber());
                 if (!Objects.isNull(tmpAgreement)) {

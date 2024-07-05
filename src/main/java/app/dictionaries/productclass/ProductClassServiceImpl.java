@@ -8,8 +8,13 @@ import java.util.Objects;
 
 @Service
 public class ProductClassServiceImpl implements ProductClassService{
+
+    private final ProductClassRepo repo;
     @Autowired
-    private ProductClassRepo repo;
+    public ProductClassServiceImpl(ProductClassRepo repo) {
+        this.repo = repo;
+    }
+
     public ProductClass findByCode(String code){
         ProductClass productClass = repo.getFirstByValue(code);
         if (Objects.isNull(productClass)) {
