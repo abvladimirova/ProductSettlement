@@ -1,5 +1,5 @@
+import app.common.exceptions.NoDataFoundException;
 import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
@@ -7,13 +7,11 @@ import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMock
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.TestPropertySource;
 import app.Main;
-import app.account.entity.Account;
-import app.account.entity.AccountPool;
-import app.account.exceptions.AccountNotFoundException;
-import app.account.exceptions.AccountPoolNotFound;
-import app.account.repository.AccountPoolRepo;
-import app.account.repository.AccountRepo;
-import app.account.service.AccountServiceImpl;
+import app.account.Account;
+import app.dictionaries.accountpool.AccountPool;
+import app.dictionaries.accountpool.AccountPoolRepo;
+import app.account.AccountRepo;
+import app.account.AccountServiceImpl;
 
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
@@ -42,7 +40,7 @@ public class AccountTests {
                 Mockito.anyString(),
                 Mockito.anyString());
 
-        assertThrows(AccountPoolNotFound.class,
+        assertThrows(NoDataFoundException.class,
                 () -> accountService.getAccountByParams(Mockito.anyString(),Mockito.anyString(),Mockito.anyString(),Mockito.anyString(),Mockito.anyString()));
     }
     //@Test
@@ -53,13 +51,13 @@ public class AccountTests {
                 Mockito.anyString(),
                 Mockito.anyString(),
                 Mockito.anyString());
-        Mockito.doReturn(null).when(mockAccountRepo).findFirstByPoolOrderByAccountNumber(
+        Mockito.doReturn(null).when(mockAccountRepo).findFirstByPoolAndBusyFalseOrderByAccountNumber(
                 Mockito.any(AccountPool.class));
-        assertThrows(AccountNotFoundException.class,(() -> accountService.getAccountByParams(Mockito.anyString(),Mockito.anyString(),Mockito.anyString(),Mockito.anyString(),Mockito.anyString())));
+        assertThrows(NoDataFoundException.class,(() -> accountService.getAccountByParams(Mockito.anyString(),Mockito.anyString(),Mockito.anyString(),Mockito.anyString(),Mockito.anyString())));
     }
 
     //@Test
-    void testAccountFoundSuccess() throws AccountNotFoundException, AccountPoolNotFound {
+    void testAccountFoundSuccess() throws NoDataFoundException {
         var pool = new AccountPool();
         Mockito.doReturn(pool).when(mockAccountPoolRepo).findFirstByBranchAndCurrencyAndMdmCodeAndPriorityAndRegisterType(
                 Mockito.anyString(),
@@ -67,9 +65,9 @@ public class AccountTests {
                 Mockito.anyString(),
                 Mockito.anyString(),
                 Mockito.anyString());
-        var accountExpect = new Account(1, "1234567890", pool);
+        var accountExpect = new Account("1234567890", pool);
 
-        Mockito.doReturn(accountExpect).when(mockAccountRepo).findFirstByPoolOrderByAccountNumber(
+        Mockito.doReturn(accountExpect).when(mockAccountRepo).findFirstByPoolAndBusyFalseOrderByAccountNumber(
                 Mockito.any(AccountPool.class));
 
         Assertions.assertEquals(accountExpect, accountService.getAccountByParams(Mockito.anyString(),Mockito.anyString(),Mockito.anyString(),Mockito.anyString(),Mockito.anyString()));

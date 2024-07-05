@@ -1,23 +1,19 @@
+import app.common.exceptions.NoDataFoundException;
 import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import app.Main;
-import app.account.exceptions.AccountNotFoundException;
-import app.account.exceptions.AccountPoolNotFound;
-import app.account.service.AccountService;
-import app.product.exceptions.ProductNotFoundException;
-import app.controllers.register.CreateProductRegisterRequest;
-import app.controllers.register.ProductRegisterController;
-import app.productregister.entity.TppProductRegister;
-import app.productregister.exceptions.DuplicateRecordException;
-import app.productregister.service.TppProductRegisterService;
-import app.registertype.entity.ProductRegisterType;
-import app.registertype.exceptions.RegisterTypeNotFoundException;
-import app.registertype.service.RegisterTypeService;
+import app.account.AccountService;
+import app.productregister.api.CreateProductRegisterRequest;
+import app.controllers.ProductRegisterController;
+import app.productregister.TppProductRegister;
+import app.common.exceptions.DuplicateRecordException;
+import app.productregister.TppProductRegisterService;
+import app.dictionaries.registertype.ProductRegisterType;
+import app.dictionaries.registertype.RegisterTypeService;
 
 import java.math.BigInteger;
 
@@ -50,7 +46,7 @@ public class ProductRegisterTests {
             assertThrows(DuplicateRecordException.class,
                     () -> controller.createProductRegister(req));
         }
-        catch (AccountNotFoundException | AccountPoolNotFound | RegisterTypeNotFoundException | ProductNotFoundException e) {
+        catch (NoDataFoundException e) {
             Assertions.assertTrue(false);
         }
     }

@@ -6,7 +6,7 @@ ARG JAR_FILE=./target/ProductSettlement-${DPVERSION}.jar
 
 WORKDIR /app
 
-ENV LANG='ru_RU.UTF-8' LANGUAGE='ru_RU.UTF-8' LC_ALL='ru_RU.UTF-8' JAVA_OPTIONS='-Dfile.encoding=UTF-8'
+#ENV LANG='ru_RU.UTF-8' LANGUAGE='ru_RU.UTF-8' LC_ALL='ru_RU.UTF-8' JAVA_OPTIONS='-Dfile.encoding=UTF-8'
 COPY ${JAR_FILE} /app/app.jar
 
 EXPOSE 8080

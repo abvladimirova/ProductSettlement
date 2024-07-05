@@ -1,10 +1,8 @@
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.TestPropertySource;
 import app.Main;
-import app.controllers.register.CreateProductRegisterRequest;
+import app.productregister.api.CreateProductRegisterRequest;
 
 import java.math.BigInteger;
 

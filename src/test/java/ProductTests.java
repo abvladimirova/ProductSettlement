@@ -1,3 +1,4 @@
+import app.common.exceptions.NoDataFoundException;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
 import org.mockito.InjectMocks;
@@ -7,13 +8,13 @@ import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMock
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.TestPropertySource;
 import app.Main;
-import app.product.entity.TppProduct;
-import app.product.exceptions.ProductNotFoundException;
-import app.product.repository.TppProductRepo;
-import app.product.service.TppProductServiceImpl;
+import app.product.TppProduct;
+import app.product.TppProductRepo;
+import app.product.TppProductServiceImpl;
 
 import java.math.BigDecimal;
 import java.math.BigInteger;
+import java.sql.Date;
 import java.sql.Timestamp;
 import java.util.Optional;
 import java.util.Random;
@@ -40,29 +41,28 @@ public class ProductTests {
     //@Test
     void testGetByIdProductNotFound() {
         Mockito.doReturn(Optional.empty()).when(mockProductRepo).findById(
-                Mockito.anyInt()
+                Mockito.any(BigInteger.class)
                 );
-        Assertions.assertThrows(ProductNotFoundException.class, (()->ProductService.getProduct(1)));
+        Assertions.assertThrows(NoDataFoundException.class, (()->ProductService.getProduct(BigInteger.valueOf(1))));
     }
 
     //@Test
-    void testGetByIdProductFound() throws ProductNotFoundException {
+    void testGetByIdProductFound() throws NoDataFoundException {
         var productExpected = new TppProduct();
         Mockito.doReturn(Optional.of(productExpected)).when(mockProductRepo).findById(
-                Mockito.anyInt()
+                Mockito.any(BigInteger.class)
         );
-        Assertions.assertEquals(productExpected, ProductService.getProduct(1));
+        Assertions.assertEquals(productExpected, ProductService.getProduct(BigInteger.valueOf(1)));
     }
 
     //@Test
     void testNewProduct() {
         var productExpected = new TppProduct();
         var random = new Random();
-        productExpected.setId(1)
+        productExpected.setId(BigInteger.valueOf(1))
                         .setClientId(BigInteger.valueOf(random.nextLong()))
                         .setNumber(String.valueOf(random.nextInt()))
-
-                        .setDateOfConclusion(Timestamp.valueOf("2024-01-01 00:00:00"))
+                        .setDateOfConclusion(Date.valueOf("2024-01-01"))
                         .setProductCodeId(BigInteger.valueOf(random.nextInt()))
                         .setClientId(BigInteger.valueOf(random.nextInt()))
                         .setProductType(String.valueOf(random.nextInt()))
