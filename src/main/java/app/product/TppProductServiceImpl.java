@@ -1,7 +1,7 @@
 package app.product;
 
 import app.common.exceptions.NoDataFoundException;
-import app.dictionaries.CommonStates;
+import app.common.CommonStates;
 import app.dictionaries.productclass.ProductClass;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -44,15 +44,14 @@ public class TppProductServiceImpl implements TppProductService {
                                  float taxRate
     ) {
 
-        var product = new TppProduct(
-                BigInteger.valueOf(productClass.getId()) ,
-                clientId,
-                type,
-                number,
-                priority,
-            dateOfConclusion);
-
-        product.setPenaltyRate(penaltyRate)
+        var product = new TppProduct()
+                .setProductCodeId(BigInteger.valueOf(productClass.getId()))
+                .setClientId(clientId)
+                .setProductType(type)
+                .setNumber(number)
+                .setPriority(priority)
+                .setDateOfConclusion(dateOfConclusion)
+                .setPenaltyRate(penaltyRate)
                 .setNso(nso)
                 .setThresholdAmount(thresholdAmount)
                 .setInterestRateType(interestRateType)
@@ -61,7 +60,7 @@ public class TppProductServiceImpl implements TppProductService {
                 .setState(CommonStates.OPEN.stateName);
 
         return productRepo.save(product);
-         //product;
+
     }
 
 }

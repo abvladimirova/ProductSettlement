@@ -2,7 +2,6 @@ package app.product;
 
 import app.common.exceptions.NoDataFoundException;
 import app.dictionaries.productclass.ProductClass;
-import app.dictionaries.AdditionalProperty;
 
 import java.math.BigDecimal;
 import java.math.BigInteger;

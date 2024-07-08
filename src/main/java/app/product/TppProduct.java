@@ -5,11 +5,10 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.NonNull;
-import lombok.RequiredArgsConstructor;
 import lombok.experimental.Accessors;
 import java.math.BigDecimal;
 import java.math.BigInteger;
@@ -17,8 +16,7 @@ import java.util.Date;
 import java.sql.Timestamp;
 
 @AllArgsConstructor
-@NoArgsConstructor
-@RequiredArgsConstructor
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Data
 @Entity(name = "tpp_product")
 @Accessors(chain = true)
@@ -27,27 +25,21 @@ public class TppProduct {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private BigInteger id;
 
-    @NonNull
     @Column(name = "product_code_id")
     private BigInteger productCodeId;
 
-    @NonNull
     @Column(name = "client_id")
     private BigInteger clientId;
 
-    @NonNull
     @Column(name = "type")
     private String productType;
 
-    @NonNull
     @Column(name = "number")
     private String number;
 
-    @NonNull
     @Column(name = "priority")
     private BigInteger priority;
 
-    @NonNull
     @Column(name = "date_of_conclusion")
     private Date dateOfConclusion;
 

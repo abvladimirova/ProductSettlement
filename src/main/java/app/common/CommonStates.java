@@ -1,4 +1,4 @@
-package app.dictionaries;
+package app.common;
 
 public enum CommonStates {
     OPEN ("Открыт"),

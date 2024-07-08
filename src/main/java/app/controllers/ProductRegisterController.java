@@ -7,6 +7,7 @@ import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -22,7 +23,7 @@ public class ProductRegisterController {
 
 
     @PostMapping (value = "/corporate-settlement-account/create", consumes = "application/json", produces = "application/json")
-    //@Transactional
+    @Transactional
     public ResponseEntity<CreateProductRegisterResponse> createProductRegister(@Valid @RequestBody final CreateProductRegisterRequest request)
     {
         CreateProductRegisterResponse response = productRegisterApi.createProductRegister(request);

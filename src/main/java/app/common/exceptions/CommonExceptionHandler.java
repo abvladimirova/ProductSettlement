@@ -61,7 +61,7 @@ public class CommonExceptionHandler {
     @ExceptionHandler(Exception.class)
     @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
     public ResponseEntity<ErrorResponse> handle(Exception ex) {
-        final List<Error> violations = List.of(new Error("INTERNAL_SERVER_ERROR", ex.getMessage()));
+        final List<Error> violations = List.of(new Error("INTERNAL_SERVER_ERROR", ex.getClass().getName() + ": " + ex.getMessage()));
         return new ResponseEntity<>(new ErrorResponse(violations), HttpStatus.INTERNAL_SERVER_ERROR);
     }
 

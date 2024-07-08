@@ -1,6 +1,6 @@
 package app.product.api;
 
-import app.dictionaries.AdditionalProperty;
+import app.common.AdditionalProperty;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import lombok.*;
@@ -11,7 +11,11 @@ import java.math.BigInteger;
 import java.util.List;
 
 @AllArgsConstructor
+@NoArgsConstructor
 @Getter
+@Setter
+@Builder
+@ToString
 public class CreateProductRequest {
 
     //Идентификатор экземпляра продукта: Если есть, создаётся ДопСоглашение к ЭП, иначе создаётся новый ЭП

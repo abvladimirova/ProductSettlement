@@ -5,6 +5,7 @@ import app.common.exceptions.DuplicateRecordException;
 import app.dictionaries.registertype.RegisterTypeService;
 import app.productregister.TppProductRegister;
 import app.productregister.TppProductRegisterService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -25,7 +26,7 @@ public class ProductRegisterApiImpl implements ProductRegisterApi {
     }
 
     @Transactional
-    public CreateProductRegisterResponse createProductRegister(CreateProductRegisterRequest request)
+    public CreateProductRegisterResponse createProductRegister(@Valid CreateProductRegisterRequest request)
     {
 
         // 1. Найти Request.Body.registryTypeCode в tpp_ref_product_register_type.value

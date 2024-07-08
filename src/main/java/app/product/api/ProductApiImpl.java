@@ -14,8 +14,10 @@ import app.product.TppProduct;
 import app.product.TppProductService;
 import app.productregister.TppProductRegister;
 import app.productregister.TppProductRegisterService;
+import jakarta.validation.Valid;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.validation.annotation.Validated;
 
 import java.math.BigInteger;
 import java.text.ParseException;
@@ -56,7 +58,8 @@ public class ProductApiImpl implements ProductApi {
     }
 
     @Transactional
-    public CreateProductResponse createProduct(CreateProductRequest request) {
+    @Validated
+    public CreateProductResponse createProduct(@Valid CreateProductRequest request) {
         final TppProduct product;
         List<TppProductRegister> productRegisters = new ArrayList<>();
 

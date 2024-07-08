@@ -6,7 +6,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import app.account.Account;
 import app.product.TppProductRepo;
-import app.dictionaries.CommonStates;
+import app.common.CommonStates;
 import app.dictionaries.registertype.ProductRegisterType;
 
 import java.math.BigInteger;

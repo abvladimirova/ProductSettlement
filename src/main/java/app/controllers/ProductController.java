@@ -20,7 +20,7 @@ public class ProductController {
     }
 
     @PostMapping(value = "/corporate-settlement-instance/create", consumes = "application/json", produces = "application/json")
-    public ResponseEntity<CreateProductResponse> createProduct(@RequestBody final @Valid CreateProductRequest request) {
+    public ResponseEntity<CreateProductResponse> createProduct(@Valid @RequestBody final CreateProductRequest request) {
 
         CreateProductResponse response = productApi.createProduct(request);
 

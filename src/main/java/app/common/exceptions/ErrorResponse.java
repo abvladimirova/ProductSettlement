@@ -1,12 +1,11 @@
 package app.common.exceptions;
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
-import lombok.RequiredArgsConstructor;
-import app.common.exceptions.Error;
 
 import java.util.List;
 @Getter
-@RequiredArgsConstructor
+@AllArgsConstructor
 public class ErrorResponse {
-    private final List<Error> errorList;
+    private List<Error> errorList;
 }

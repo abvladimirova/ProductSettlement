@@ -1,6 +1,7 @@
 package app.productregister;
 
 import jakarta.persistence.*;
+import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 import lombok.Getter;
@@ -11,7 +12,7 @@ import app.dictionaries.registertype.ProductRegisterType;
 import java.math.BigInteger;
 
 @AllArgsConstructor
-@NoArgsConstructor
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Getter
 @Setter
 @Builder

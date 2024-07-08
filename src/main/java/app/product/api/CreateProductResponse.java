@@ -4,14 +4,20 @@ import app.agreement.Agreement;
 import app.product.TppProduct;
 import app.productregister.TppProductRegister;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.ToString;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 @Getter
+@NoArgsConstructor
+@ToString
 public class CreateProductResponse {
-    private final String instanceId;
-    private final List<Integer> supplementaryAgreementId;
-    private final List<Integer> registerId;
+    private String instanceId;
+    private List<Integer> supplementaryAgreementId = new ArrayList<>();
+    private List<Integer> registerId = new ArrayList<>();
 
     public CreateProductResponse(
             TppProduct product,
@@ -20,7 +26,9 @@ public class CreateProductResponse {
     {
         instanceId = String.valueOf(product.getId());
 
-        registerId = productRegisters.stream().map((r -> r.getId())).toList();
-        supplementaryAgreementId = agreements.stream().map((a -> a.getId())).toList();
+        if (!Objects.isNull(productRegisters))
+            registerId = productRegisters.stream().map((TppProductRegister::getId)).toList();
+        if (!Objects.isNull(agreements))
+            supplementaryAgreementId = agreements.stream().map((Agreement::getId)).toList();
     }
 }

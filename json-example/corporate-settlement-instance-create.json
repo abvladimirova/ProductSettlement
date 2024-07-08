@@ -2,8 +2,8 @@
   "productType": "ЕЖО",
   "productCode": "02.001.005",
   "registerType": "type",
-  "mdmCode": "56325",
-  "contractNumber": "R17",
+  "mdmCode": "13",
+  "contractNumber": "R55",
   "contractDate": "2021-01-01",
   "priority": "00",
   "interestRatePenalty": 1.2,
@@ -12,6 +12,9 @@
   "accountingDetails": "Счет 123 ИНН 333 КПП 888",
   "rateType": "0",
   "taxPercentageRate": 7,
+  "branchCode":"0021",
+  "isoCurrencyCode": "500",
+  "urgencyCode":"00",
   "additionalProperties": [
     {
       "key": "RailwayRegionOwn",
@@ -20,6 +23,17 @@
     {
       "key": "counter",
       "value": "123"
+    }
+  ],
+  "instanceArrangement": [
+    {
+      "number": "R-55",
+      "openingDate": "2022-01-01",
+      "status": "открыт",
+      "interestCalculationDate": "2021-01-01",
+      "interestRate": 5.4,
+      "coefficient": 1.5,
+      "coefficientAction": "+"
     }
   ]
 }
